@@ -1,20 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
+// 1.importing the express
+const express = require("express");
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <BrowserRouter>
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-  </BrowserRouter>
-);
+ 
+// 2.initialize
+const app = new express();
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+//middleware
+app.use(express.urlencoded({extented:true}));
+app.use(express.json())
+// 3.Api creation
+app.get("/trial",(req,res) =>{
+    res.json("Hello Boy");
+})
+
+app.post('/login',(req,res)=>{
+    console.log(req.body);
+    res.send("data added");
+})
+// 4.port
+app.listen(3010,(req,res) =>{
+    console.log("port 3010 is active")
+})
